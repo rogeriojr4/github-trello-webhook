@@ -3,5 +3,15 @@
   "GITHUB_OWNER": "my_name",
   "TRELLO_TOKEN": "shhhh",
   "TRELLO_KEY": "ahdsaj",
-  "APP_URL": "https://aaa.ngrok.io"
+  "APP_URL": "https://aaa.ngrok.io",
+
+  "BOARDS": [
+    {
+      "name": "<name-of-the-board>",
+      "id": "<id-of-the-board-from-board-url-.json>",
+      "labels": [
+        { "name": "<name-of-the-label-on-the-card>", "owner": "<owner-of-the-repo>", "repo": "<repo-name>" }
+      ]
+    }
+  ]
 }

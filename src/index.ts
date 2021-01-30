@@ -1,9 +1,10 @@
 import fastify from "fastify";
-import { initExampleRoutes } from "./routes/Example";
+import { initWebhookRoutes } from "./routes/Webhook";
 import { initDocumentation } from "./services/Documentation";
 import fastifyCors from "fastify-cors";
 import { Route } from "./types/common";
 import { initBranchRoutes } from "./routes/Branches";
+import { initWebhooks } from "./services/CreateWebHook";
 
 /**
  * Main server:
@@ -18,6 +19,7 @@ app.register(fastifyCors);
 const API_VERSION = "v0.1.0";
 
 async function main() {
+  await initWebhooks();
   initDocumentation(app, API_VERSION);
 
   /**
@@ -29,7 +31,7 @@ async function main() {
       prefix: "/branch",
     },
     {
-      init: initExampleRoutes,
+      init: initWebhookRoutes,
       prefix: "/",
     },
   ];

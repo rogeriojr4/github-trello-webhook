@@ -5,7 +5,7 @@ import GetBranch from "../schemas/GetBranch.json";
 import UpdateBranch from "../schemas/UpdateBranch.json";
 import {
   createBranch,
-  getBranchs,
+  getBranchs as getBranches,
   IGetBranch,
   updateBranch,
 } from "../utils/Github/Branches";
@@ -16,6 +16,7 @@ export function initBranchRoutes(app: FastifyApp, {}: Services) {
   }>(
     "/",
     {
+      prefixTrailingSlash: "no-slash",
       schema: {
         body: CreateBranch,
       },
@@ -35,7 +36,7 @@ export function initBranchRoutes(app: FastifyApp, {}: Services) {
         console.log(err);
         return res.status(500).send(err);
       }
-    },
+    }
   );
 
   app.patch<{
@@ -43,6 +44,7 @@ export function initBranchRoutes(app: FastifyApp, {}: Services) {
   }>(
     "/",
     {
+      prefixTrailingSlash: "no-slash",
       schema: {
         body: UpdateBranch,
       },
@@ -76,7 +78,7 @@ export function initBranchRoutes(app: FastifyApp, {}: Services) {
         console.log(err);
         return res.status(500).send(err);
       }
-    },
+    }
   );
 
   app.get<{
@@ -92,7 +94,7 @@ export function initBranchRoutes(app: FastifyApp, {}: Services) {
       const { owner, repo } = req.params;
 
       try {
-        const response = await getBranchs({
+        const response = await getBranches({
           owner,
           repo,
         });
@@ -102,6 +104,6 @@ export function initBranchRoutes(app: FastifyApp, {}: Services) {
         console.log(err);
         return res.status(500).send(err);
       }
-    },
+    }
   );
 }
